@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY Domain Layout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #c5e0e5;
+    }
+
+    /* Header */z
+    header {
+      background-color: #b4d0ef;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .dropdown {
+      position: relative;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .dropdown::after {
+      content: "▼";
+      margin-left: 5px;
+      font-size: 12px;
+    }
+
+    .search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      max-width: 300px;
+      background-color: white;
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin-left: auto;
+    }
+
+    /* Topic Bars */
+    .topic-bar {
+      background-color: #777;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .topic-bar span {
+      background-color: #aaa;
+      padding: 6px 12px;
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .highlight {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .highlight::before {
+      content: "🔥";
+    }
+
+    /* Main layout */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 200px);
+    }
+
+    .sidebar {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 10px;
+      width: 200px;
+    }
+
+    .sidebar button {
+      background-color: #3c2f3e;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #4d3f4f;
+    }
+
+    .content {
+      flex: 1;
+      background-color: #c5e0e5;
+      padding: 20px;
+    }
+
+    .footer {
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-links {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .app-links img {
+      height: 40px;
+      margin: 5px;
+    }
+
+    /* Footer content styles */
+    .footer-content {
+      display: none;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Footer columns styles */
+    .footer-columns {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      background-color: #003974;
+      color: white;
+      padding: 40px 60px;
+      margin-top: 20px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .footer-column {
+      flex: 0 0 auto;
+      min-width: 200px;
+      margin-right: 40px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .footer-column h4 {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-align: left;
+    }
+
+    .footer-column ul li:hover {
+      text-decoration: underline;
+      transform: translateX(5px);
+    }
+
+    .footer-column ul li::before {
+      content: '›';
+      margin-right: 8px;
+      color: white;
+    }
+
+    /* Business grid styles */
+    .business-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      background-color: #f3f2f7;
+      color: #222;
+      padding: 40px;
+      margin-top: 20px;
+      border-radius: 8px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .category h3 {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .category ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .category ul li {
+      font-size: 15px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-align: left;
+    }
+
+    .category ul li:hover {
+      text-decoration: underline;
+      transform: translateX(5px);
+    }
+
+    .category ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: #444;
+    }
+
+    /* Button styles */
+    .footer-btn {
+      background-color: #3c2f3e;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .footer-btn:hover {
+      background-color: #4d3f4f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .footer-btn.active {
+      background-color: #5d4f5f;
+      box-shadow: 0 0 0 2px white;
+    }
+
+    /* Close button */
+    .close-footer-btn {
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 15px auto;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      transition: all 0.3s;
+    }
+
+    .close-footer-btn:hover {
+      background-color: #ff0000;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">MY Domain.com</div>
+    <div class="dropdown">Drop1</div>
+    <div class="dropdown">Drop2</div>
+    <div class="dropdown">drop1</div>
+    <div class="dropdown">Drop2</div>
+    <div class="dropdown">DropMenu3</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Hinted search text" />
+    </div>
+    <div class="avatar"></div>
+  </header>
+
+  <!-- Trending Topics -->
+  <div class="topic-bar">
+    <span class="highlight">Trending Topics</span>
+    <span>Topics 1</span>
+    <span>Topics 2</span>
+    <span>Topic 3</span>
+    <span>Topi</span>
+    <span>Topic no 5</span>
+    <span>Topic num6</span>
+    <span>Topic nu 7</span>
+    <span>Topic</span>
+    <span>Topic</span>
+    <span>Topic num</span>
+  </div>
+
+  <!-- Latest Section -->
+  <div class="topic-bar">
+    <span class="highlight">Latest</span>
+    <span>Latest nu 1</span>
+    <span>Latest nu 2</span>
+    <span>Latest nu 3</span>
+    <span>Latest n 4</span>
+    <span>Latest</span>
+    <span>Long latest num 7</span>
+    <span>Latest n 4</span>
+    <span>Latest</span>
+  </div>
+
+  <!-- Main layout -->
+  <div class="layout">
+    <div class="sidebar">
+      <button>Side option 1</button>
+      <button>Side option 2</button>
+      <button>Side option 3</button>
+      <button>Side option 4</button>
+      <button>Side option 5</button>
+      <button>Side option 6</button>
+      <button>Side option 7</button>
+      <button>Side option 8</button>
+      <button>Side option 9</button>
+      <button>Side option 10</button>
+      <button>Side option 11</button>
+
+      <div class="app-links">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
+        <br />
+        <button class="footer-btn" id="sitemapBtn">SITEMAP</button>
+        <button class="footer-btn" id="groupSitesBtn">GROUP SITES</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Main Content Goes Here -->
+    </div>
+  </div>
+
+  <!-- Footer with dynamic content -->
+  <div class="footer">
+    <div id="defaultFooter">
+      
+    </div>
+    
+    <!-- Sitemap Content -->
+    <div id="sitemapContent" class="footer-content">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>About Us</h4>
+          <ul>
+            <li>Overview</li>
+            <li>Vision, Values & Beliefs</li>
+            <li>Our Presence</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Our Businesses</h4>
+          <ul>
+            <li>Airports</li>
+            <li>Energy</li>
+            <li>Transportation</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Investor Relations</h4>
+          <ul>
+            <li>GAL</li>
+            <li>GPUIL</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Media</h4>
+          <h4 style="margin-top: 20px;">GMR Blogs</h4>
+          <h4 style="margin-top: 20px;">Contact Us</h4>
+        </div>
+
+        <div class="footer-column">
+          <h4>Careers</h4>
+          <ul>
+            <li>Overview</li>
+            <li>Working @ GMR Group</li>
+            <li>FAQs</li>
+            <li>Current Openings</li>
+            <li>Fake Job Disclaimer</li>
+          </ul>
+        </div>
+      </div>
+      <button class="close-footer-btn" id="closeSitemap">Close Sitemap</button>
+    </div>
+    
+    <!-- Group Sites Content -->
+    <div id="groupSitesContent" class="footer-content">
+      <div class="business-grid">
+        <div class="category">
+          <h3>Corporate</h3>
+          <ul>
+            <li>GMR Group</li>
+            <li>GMR Airports Limited [Formerly Known As GMR Airports Infrastructure Limited]</li>
+            <li>GMR Power & Urban Infra Limited</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>Airports</h3>
+          <ul>
+            <li>GMR Airports</li>
+            <li>Delhi International Airport Limited</li>
+            <li>GMR Hyderabad International Airport Limited</li>
+            <li>Manohar International Airport, Goa</li>
+            <li>Mactan Cebu International Airport</li>
+            <li>GMR Visakhapatnam International Airport</li>
+            <li>GMR Aerocity Delhi</li>
+            <li>GMR Aerocity Hyderabad</li>
+            <li>DIAL Cargo</li>
+            <li>GMR AERO Technic</li>
+            <li>GMR Aerospace & Industrial Park</li>
+            <li>GMR Arena</li>
+            <li>GMR Business Park</li>
+            <li>GMR Innovex</li>
+            <li>GMR AERO Academy</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>Urban Infrastructure</h3>
+          <ul>
+            <li>GMR Krishnagiri SIR</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <h3>Sports</h3>
+          <ul>
+            <li>GMR Sports</li>
+            <li>Delhi Capitals</li>
+            <li>UP Yoddhas</li>
+            <li>Dubai Capitals</li>
+            <li>India Capitals</li>
+            <li>Telugu Yoddhas</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    // Get elements
+    const sitemapBtn = document.getElementById('sitemapBtn');
+    const groupSitesBtn = document.getElementById('groupSitesBtn');
+    const defaultFooter = document.getElementById('defaultFooter');
+    const sitemapContent = document.getElementById('sitemapContent');
+    const groupSitesContent = document.getElementById('groupSitesContent');
+    const closeSitemap = document.getElementById('closeSitemap');
+    const closeGroupSites = document.getElementById('closeGroupSites');
+
+    // Function to reset footer
+    function resetFooter() {
+      defaultFooter.style.display = 'block';
+      sitemapContent.style.display = 'none';
+      groupSitesContent.style.display = 'none';
+      sitemapBtn.classList.remove('active');
+      groupSitesBtn.classList.remove('active');
+    }
+
+    // Initialize
+    resetFooter();
+
+    // Sitemap button click
+    sitemapBtn.addEventListener('click', function() {
+      if (sitemapContent.style.display === 'block') {
+        resetFooter();
+      } else {
+        defaultFooter.style.display = 'none';
+        sitemapContent.style.display = 'block';
+        groupSitesContent.style.display = 'none';
+        sitemapBtn.classList.add('active');
+        groupSitesBtn.classList.remove('active');
+        
+        // Scroll to footer
+        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Group Sites button click
+    groupSitesBtn.addEventListener('click', function() {
+      if (groupSitesContent.style.display === 'block') {
+        resetFooter();
+      } else {
+        defaultFooter.style.display = 'none';
+        groupSitesContent.style.display = 'block';
+        sitemapContent.style.display = 'none';
+        groupSitesBtn.classList.add('active');
+        sitemapBtn.classList.remove('active');
+        
+        // Scroll to footer
+        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Close buttons
+    closeSitemap.addEventListener('click', resetFooter);
+    closeGroupSites.addEventListener('click', resetFooter);
+  </script>
+
+</body>
+</html>
