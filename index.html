@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MY Domain Layout</title>
   <style>
     body {
@@ -10,7 +11,7 @@
       background-color: #c5e0e5;
     }
 
-    /* Header */z
+    /* Header */
     header {
       background-color: #b4d0ef;
       display: flex;
@@ -23,11 +24,18 @@
     .logo {
       font-weight: bold;
       font-size: 24px;
+      margin-right: auto;
+    }
+
+    .dropdown-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      order: 1;
     }
 
     .dropdown {
       position: relative;
-      margin-right: 10px;
       cursor: pointer;
     }
 
@@ -37,14 +45,19 @@
       font-size: 12px;
     }
 
-    .search-bar {
-      flex: 1;
+    .search-container {
       display: flex;
       align-items: center;
-      max-width: 300px;
+      order: 2;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
       background-color: white;
       padding: 6px 10px;
       border-radius: 20px;
+      min-width: 200px;
     }
 
     .search-bar input {
@@ -58,7 +71,7 @@
       height: 32px;
       border-radius: 50%;
       background-color: #ccc;
-      margin-left: auto;
+      margin-left: 15px;
     }
 
     /* Topic Bars */
@@ -68,6 +81,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      overflow-x: auto;
     }
 
     .topic-bar span {
@@ -76,6 +90,7 @@
       border-radius: 12px;
       color: white;
       font-size: 14px;
+      white-space: nowrap;
     }
 
     .highlight {
@@ -95,13 +110,26 @@
     .layout {
       display: flex;
       min-height: calc(100vh - 200px);
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .layout {
+        flex-direction: row;
+      }
     }
 
     .sidebar {
       background-color: #1e1e1e;
       color: white;
       padding: 10px;
-      width: 200px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
     }
 
     .sidebar button {
@@ -305,24 +333,6 @@
       background-color: #5d4f5f;
       box-shadow: 0 0 0 2px white;
     }
-
-    /* Close button */
-    .close-footer-btn {
-      background-color: #ff4444;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      margin: 15px auto;
-      border-radius: 4px;
-      cursor: pointer;
-      display: block;
-      transition: all 0.3s;
-    }
-
-    .close-footer-btn:hover {
-      background-color: #ff0000;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
@@ -330,15 +340,21 @@
   <!-- Header -->
   <header>
     <div class="logo">MY Domain.com</div>
-    <div class="dropdown">Drop1</div>
-    <div class="dropdown">Drop2</div>
-    <div class="dropdown">drop1</div>
-    <div class="dropdown">Drop2</div>
-    <div class="dropdown">DropMenu3</div>
-    <div class="search-bar">
-      <input type="text" placeholder="Hinted search text" />
+    
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" placeholder="Hinted search text" />
+      </div>
+      <div class="avatar"></div>
     </div>
-    <div class="avatar"></div>
+    
+    <div class="dropdown-container">
+      <div class="dropdown">Drop1</div>
+      <div class="dropdown">Drop2</div>
+      <div class="dropdown">drop1</div>
+      <div class="dropdown">Drop2</div>
+      <div class="dropdown">DropMenu3</div>
+    </div>
   </header>
 
   <!-- Trending Topics -->
@@ -449,7 +465,6 @@
           </ul>
         </div>
       </div>
-      <button class="close-footer-btn" id="closeSitemap">Close Sitemap</button>
     </div>
     
     <!-- Group Sites Content -->
@@ -504,7 +519,6 @@
           </ul>
         </div>
       </div>
-      
     </div>
   </div>
 
@@ -515,8 +529,6 @@
     const defaultFooter = document.getElementById('defaultFooter');
     const sitemapContent = document.getElementById('sitemapContent');
     const groupSitesContent = document.getElementById('groupSitesContent');
-    const closeSitemap = document.getElementById('closeSitemap');
-    const closeGroupSites = document.getElementById('closeGroupSites');
 
     // Function to reset footer
     function resetFooter() {
@@ -562,9 +574,14 @@
       }
     });
 
-    // Close buttons
-    closeSitemap.addEventListener('click', resetFooter);
-    closeGroupSites.addEventListener('click', resetFooter);
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.footer-content') && 
+          !e.target.closest('.footer-btn') &&
+          (sitemapContent.style.display === 'block' || groupSitesContent.style.display === 'block')) {
+        resetFooter();
+      }
+    });
   </script>
 
 </body>
