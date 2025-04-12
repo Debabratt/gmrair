@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap" rel="stylesheet">
+
   <title>MY Domain Layout</title>
   <style>
     body {
@@ -13,24 +17,39 @@
 
     /* Header */
     header {
+      justify-content: space-between;
       background-color: #b4d0ef;
       display: flex;
       align-items: center;
       padding: 10px 20px;
       gap: 15px;
       flex-wrap: wrap;
+      border-bottom: 1px solid black; 
     }
 
     .logo {
+      font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700;
       font-weight: bold;
       font-size: 24px;
-      margin-right: auto;
+      margin-right: 24px;
+      position: relative;
+    }
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      margin-bottom:3px ;
+      background-color: black;
     }
 
     .dropdown-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 25px;
       order: 1;
     }
 
@@ -74,23 +93,52 @@
       margin-left: 15px;
     }
 
-    /* Topic Bars */
-    .topic-bar {
-      background-color: #777;
-      padding: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      overflow-x: auto;
-    }
+    .nav-tabs {
+  background-color: #d3d4d5;
+  padding: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid black; /* black line below tabs */
+}
 
-    .topic-bar span {
-      background-color: #aaa;
-      padding: 6px 12px;
-      border-radius: 12px;
-      color: white;
-      font-size: 14px;
-      white-space: nowrap;
+/* Tab buttons */
+.tab {
+  background-color: #999;
+  color: white;
+  border: none;
+  border-radius: 999px; /* Fully rounded buttons */
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+  min-width: 120px; /* Wider buttons */
+}
+
+.tab.active {
+  background-color: #2d1a2d;
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+/* Optional: Make it scrollable on mobile devices */
+.nav-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+.nav-tabs::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}
+
+    .trend-icon {
+      color: red;
+      margin-left: 3px;
     }
 
     .highlight {
@@ -120,7 +168,7 @@
     }
 
     .sidebar {
-      background-color: #1e1e1e;
+      background-color: #B4D0EF;
       color: white;
       padding: 10px;
       width: 100%;
@@ -140,7 +188,7 @@
       margin: 5px 0;
       width: 100%;
       border-radius: 6px;
-      text-align: left;
+      text-align: center;
       cursor: pointer;
       transition: background-color 0.3s;
     }
@@ -156,16 +204,16 @@
     }
 
     .footer {
-      padding: 20px;
+      /* padding: 20px; */
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .app-links {
-      margin-top: 10px;
+      margin-top: 50px;
       padding: 10px;
-      background-color: #fff;
+      /* background-color: #fff; */
       text-align: center;
     }
 
@@ -194,13 +242,13 @@
     /* Footer columns styles */
     .footer-columns {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       flex-wrap: wrap;
       background-color: #003974;
       color: white;
       padding: 40px 60px;
-      margin-top: 20px;
-      border-radius: 8px;
+      /* margin-top: 20px; */
+      /* border-radius: 8px; */
       text-align: left;
     }
 
@@ -253,7 +301,7 @@
       background-color: #f3f2f7;
       color: #222;
       padding: 40px;
-      margin-top: 20px;
+      /* margin-top: 20px; */
       border-radius: 8px;
       animation: fadeIn 0.5s ease-out;
     }
@@ -310,29 +358,44 @@
       color: #444;
     }
 
-    /* Button styles */
-    .footer-btn {
-      background-color: #3c2f3e;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      margin: 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
+    .footer-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 15px;
+  padding: 0 10px;
+}
 
-    .footer-btn:hover {
-      background-color: #4d3f4f;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+.footer-btn {
+  background: linear-gradient(135deg, #3c2f3e, #5a4a5e);
+  color: #f1f1f1;
+  border: 1px solid #6e5e72;
+  padding: 6px 16px;
+  margin: 0 5px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  max-width: 140px;
+}
 
-    .footer-btn.active {
-      background-color: #5d4f5f;
-      box-shadow: 0 0 0 2px white;
-    }
+.footer-btn:hover {
+  background: linear-gradient(135deg, #4d3f4f, #6d5a70);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer-btn.active {
+  background: linear-gradient(135deg, #6d5a70, #7a6780);
+  box-shadow: 0 0 0 2px #fff;
+  color: #fff;
+}
+
+
   </style>
 </head>
 <body>
@@ -351,39 +414,41 @@
     <div class="dropdown-container">
       <div class="dropdown">Drop1</div>
       <div class="dropdown">Drop2</div>
-      <div class="dropdown">drop1</div>
+      <div class="dropdown">Drop1</div>
       <div class="dropdown">Drop2</div>
       <div class="dropdown">DropMenu3</div>
     </div>
   </header>
 
   <!-- Trending Topics -->
-  <div class="topic-bar">
-    <span class="highlight">Trending Topics</span>
-    <span>Topics 1</span>
-    <span>Topics 2</span>
-    <span>Topic 3</span>
-    <span>Topi</span>
-    <span>Topic no 5</span>
-    <span>Topic num6</span>
-    <span>Topic nu 7</span>
-    <span>Topic</span>
-    <span>Topic</span>
-    <span>Topic num</span>
-  </div>
+<div class="nav-tabs">
+  <button class="tab active">Trending Topics <span class="trend-icon">📈</span></button>
+  <button class="tab">Topics 1</button>
+  <button class="tab">Topics 2</button>
+  <button class="tab">Topics 3</button>
+  <button class="tab">Topics 4</button>
+  <button class="tab">Topics 5</button>
+  <button class="tab">Topics 6</button>
+  <button class="tab">Topics 7</button>
+  <button class="tab">Topics 8</button>
+  <button class="tab">Topics 9</button>
+  <button class="tab">Topics 10</button>
+</div>
 
-  <!-- Latest Section -->
-  <div class="topic-bar">
-    <span class="highlight">Latest</span>
-    <span>Latest nu 1</span>
-    <span>Latest nu 2</span>
-    <span>Latest nu 3</span>
-    <span>Latest n 4</span>
-    <span>Latest</span>
-    <span>Long latest num 7</span>
-    <span>Latest n 4</span>
-    <span>Latest</span>
-  </div>
+<!-- Latest Navigation -->
+<div class="nav-tabs">
+  <button class="tab active"><span class="menu-icon">☰</span> Latest <span class="trend-icon">📈</span></button>
+  <button class="tab">Latest num 1</button>
+  <button class="tab">Latest num 2</button>
+  <button class="tab">Latest num 3</button>
+  <button class="tab">Latest num 4</button>
+  <button class="tab">Latest</button>
+  <button class="tab">Long latest num 7</button>
+  <button class="tab">Latest n 4</button>
+  <button class="tab">Lates</button>
+</div>
+
+  
 
   <!-- Main layout -->
   <div class="layout">
@@ -402,10 +467,12 @@
 
       <div class="app-links">
         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
-        <br />
-        <button class="footer-btn" id="sitemapBtn">SITEMAP</button>
-        <button class="footer-btn" id="groupSitesBtn">GROUP SITES</button>
+        <div class="footer-btn-wrapper">
+          <button class="footer-btn" id="sitemapBtn">SITEMAP</button>
+          <button class="footer-btn" id="groupSitesBtn">GROUP SITES</button>
+        </div>
       </div>
+      
     </div>
 
     <div class="content">
