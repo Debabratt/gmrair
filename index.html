@@ -6,7 +6,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap" rel="stylesheet">
-
   <title>MY Domain Layout</title>
   <style>
     body {
@@ -25,15 +24,16 @@
       gap: 15px;
       flex-wrap: wrap;
       border-bottom: 1px solid black; 
+      position: relative;
     }
 
     .logo {
       font-family: 'Merriweather Sans', sans-serif;
-  font-weight: 700;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 24px;
       margin-right: 24px;
       position: relative;
+      z-index: 1001;
     }
     .logo::after {
       content: "";
@@ -94,64 +94,167 @@
     }
 
     .nav-tabs {
-  background-color: #d3d4d5;
-  padding: 10px;
-  overflow-x: auto;
-  white-space: nowrap;
-  display: flex;
-  gap: 10px;
-  border-bottom: 2px solid black; /* black line below tabs */
-}
-
-/* Tab buttons */
-.tab {
-  background-color: #999;
-  color: white;
-  border: none;
-  border-radius: 999px; /* Fully rounded buttons */
-  padding: 5px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  flex-shrink: 0;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
-  min-width: 120px; /* Wider buttons */
-}
-
-.tab.active {
-  background-color: #2d1a2d;
-  border-top-right-radius: 999px;
-  border-bottom-right-radius: 999px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-
-/* Optional: Make it scrollable on mobile devices */
-.nav-tabs::-webkit-scrollbar {
-  height: 6px;
-}
-.nav-tabs::-webkit-scrollbar-thumb {
-  background: #666;
-  border-radius: 10px;
-}
-
-    .trend-icon {
-      color: red;
-      margin-left: 3px;
+      background-color: #d3d4d5;
+      padding: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid black;
     }
 
-    .highlight {
-      background-color: #1a1a1a;
-      color: #fff;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
+    /* Tab buttons */
+    .tab {
+      background-color: #999;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 5px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      white-space: nowrap;
+      transition: background-color 0.3s ease;
+      min-width: 120px;
+    }
+
+    .tab.active {
+      background-color: #2d1a2d;
+      border-top-right-radius: 999px;
+      border-bottom-right-radius: 999px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: auto;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #b4d0ef;
+      padding: 20px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      flex-direction: column;
+      gap: 15px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu .dropdown-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .mobile-menu .search-container {
+      order: -1;
+      width: 100%;
+    }
+
+    .mobile-menu .search-bar {
+      width: 100%;
+    }
+
+    /* Mobile nav sections */
+    .mobile-nav-section {
+      display: flex;
+      flex-direction: column;
       gap: 5px;
+      margin-top: 15px;
     }
 
-    .highlight::before {
-      content: "🔥";
+    .mobile-nav-header {
+      background-color: #2d1a2d;
+      color: white;
+      padding: 12px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .mobile-nav-header::after {
+      content: "▼";
+      font-size: 12px;
+      transition: transform 0.3s;
+    }
+
+    .mobile-nav-header.active::after {
+      transform: rotate(180deg);
+    }
+
+    .mobile-nav-tabs {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px 0 8px 15px;
+    }
+
+    .mobile-nav-tabs.active {
+      display: flex;
+    }
+
+    .mobile-nav-tabs .tab {
+      width: 100%;
+      text-align: left;
+      padding: 10px 15px;
+      background-color: #666;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .mobile-nav-tabs .tab.active {
+      background-color: #2d1a2d;
+      border-radius: 6px;
+    }
+
+    /* Sidebar options in mobile menu */
+    .mobile-side-options {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .mobile-side-options.active {
+      display: flex;
+    }
+
+    .mobile-side-options button {
+      background-color: #3c2f3e;
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     /* Main layout */
@@ -172,6 +275,8 @@
       color: white;
       padding: 10px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     @media (min-width: 768px) {
@@ -204,16 +309,14 @@
     }
 
     .footer {
-      /* padding: 20px; */
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .app-links {
-      margin-top: 50px;
+      margin-top: 50px; /* Push to bottom of sidebar */
       padding: 10px;
-      /* background-color: #fff; */
       text-align: center;
     }
 
@@ -246,40 +349,33 @@
       flex-wrap: wrap;
       background-color: #003974;
       color: white;
-      padding: 40px 60px;
-      /* margin-top: 20px; */
-      /* border-radius: 8px; */
+      padding: 20px;
       text-align: left;
     }
 
     .footer-column {
-      flex: 0 0 auto;
+      flex: 1 1 200px;
       min-width: 200px;
-      margin-right: 40px;
-      margin-bottom: 20px;
-      text-align: left;
+      margin: 10px;
     }
 
     .footer-column h4 {
       font-size: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-transform: uppercase;
-      text-align: left;
     }
 
     .footer-column ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      text-align: left;
     }
 
     .footer-column ul li {
-      margin-bottom: 12px;
-      font-size: 15px;
+      margin-bottom: 10px;
+      font-size: 14px;
       cursor: pointer;
       transition: transform 0.2s;
-      text-align: left;
     }
 
     .footer-column ul li:hover {
@@ -296,12 +392,11 @@
     /* Business grid styles */
     .business-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       background-color: #f3f2f7;
       color: #222;
-      padding: 40px;
-      /* margin-top: 20px; */
+      padding: 20px;
       border-radius: 8px;
       animation: fadeIn 0.5s ease-out;
     }
@@ -318,13 +413,12 @@
     .category {
       display: flex;
       flex-direction: column;
-      text-align: left;
     }
 
     .category h3 {
       font-size: 16px;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-transform: uppercase;
     }
 
@@ -332,18 +426,16 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      text-align: left;
     }
 
     .category ul li {
-      font-size: 15px;
-      margin-bottom: 10px;
-      line-height: 1.6;
+      font-size: 14px;
+      margin-bottom: 8px;
+      line-height: 1.5;
       position: relative;
       padding-left: 15px;
       cursor: pointer;
       transition: transform 0.2s;
-      text-align: left;
     }
 
     .category ul li:hover {
@@ -358,44 +450,120 @@
       color: #444;
     }
 
+    /* Footer buttons - mobile */
     .footer-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      background-color: #b4d0ef;
+      flex-wrap: wrap;
+    }
+
+    /* Footer buttons - desktop (in sidebar) */
+    .sidebar-btn-wrapper {
   display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  gap: 15px;
-  padding: 0 10px;
+  flex-direction: column;
+  gap: 6px;  /* Reduced gap */
+  margin-top: auto;
+  padding: 6px 0;  /* Reduced padding */
 }
 
-.footer-btn {
-  background: linear-gradient(135deg, #3c2f3e, #5a4a5e);
-  color: #f1f1f1;
-  border: 1px solid #6e5e72;
-  padding: 6px 16px;
-  margin: 0 5px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease-in-out;
-  max-width: 140px;
-}
+    @media (min-width: 768px) {
+      .footer-btn-wrapper {
+        display: none;
+      }
+    }
 
-.footer-btn:hover {
-  background: linear-gradient(135deg, #4d3f4f, #6d5a70);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
+    @media (max-width: 767px) {
+      .sidebar-btn-wrapper {
+        display: none;
+      }
+    }
 
-.footer-btn.active {
-  background: linear-gradient(135deg, #6d5a70, #7a6780);
-  box-shadow: 0 0 0 2px #fff;
-  color: #fff;
-}
+    .footer-btn {
+      background: linear-gradient(135deg, #3c2f3e, #5a4a5e);
+      color: #f1f1f1;
+      border: 1px solid #6e5e72;
+      padding: 10px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease-in-out;
+      min-width: 140px;
+      text-align: center;
+      width: 100%;
+    }
 
+    .footer-btn:hover {
+      background: linear-gradient(135deg, #4d3f4f, #6d5a70);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
 
+    .footer-btn.active {
+      background: linear-gradient(135deg, #6d5a70, #7a6780);
+      box-shadow: 0 0 0 2px #fff;
+      color: #fff;
+    }
+
+    /* Media queries for mobile */
+    @media (max-width: 767px) {
+      .hamburger {
+        display: block;
+      }
+
+      .dropdown-container, .search-container, .nav-tabs, .sidebar {
+        display: none;
+      }
+
+      .mobile-menu.active .dropdown-container,
+      .mobile-menu.active .search-container {
+        display: flex;
+      }
+      
+      /* Adjust header padding for mobile */
+      header {
+        padding: 10px 15px;
+      }
+      
+      /* Make logo smaller on mobile */
+      .logo {
+        font-size: 20px;
+      }
+      
+      /* Adjust footer columns for mobile */
+      .footer-columns {
+        padding: 15px 10px;
+      }
+      
+      .footer-column {
+        flex: 1 1 100%;
+        min-width: 100%;
+      }
+      
+      /* Make business grid single column on mobile */
+      .business-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Active hamburger menu state */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
   </style>
 </head>
 <body>
@@ -404,6 +572,14 @@
   <header>
     <div class="logo">MY Domain.com</div>
     
+    <!-- Hamburger menu -->
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <!-- Desktop content (hidden on mobile) -->
     <div class="search-container">
       <div class="search-bar">
         <input type="text" placeholder="Hinted search text" />
@@ -418,40 +594,110 @@
       <div class="dropdown">Drop2</div>
       <div class="dropdown">DropMenu3</div>
     </div>
+    
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu">
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="avatar"></div>
+      </div>
+      <div class="dropdown-container">
+        <div class="dropdown">Drop1</div>
+        <div class="dropdown">Drop2</div>
+        <div class="dropdown">Drop1</div>
+        <div class="dropdown">Drop2</div>
+        <div class="dropdown">DropMenu3</div>
+      </div>
+      
+      <!-- Side options in mobile menu -->
+      <div class="mobile-nav-header" id="sideOptionsHeader">
+        Side Options
+      </div>
+      <div class="mobile-side-options" id="sideOptions">
+        <button>Side option 1</button>
+        <button>Side option 2</button>
+        <button>Side option 3</button>
+        <button>Side option 4</button>
+        <button>Side option 5</button>
+        <button>Side option 6</button>
+        <button>Side option 7</button>
+        <button>Side option 8</button>
+        <button>Side option 9</button>
+        <button>Side option 10</button>
+        <button>Side option 11</button>
+      </div>
+      
+      <!-- Trending Topics in mobile menu -->
+      <div class="mobile-nav-section">
+        <div class="mobile-nav-header active" id="trendingHeader">
+          Trending Topics <span class="trend-icon">📈</span>
+        </div>
+        <div class="mobile-nav-tabs active" id="trendingTabs">
+          <div class="tab active">Topic 1</div>
+          <div class="tab">Topic 2</div>
+          <div class="tab">Topic 3</div>
+          <div class="tab">Topic 4</div>
+          <div class="tab">Topic 5</div>
+          <div class="tab">Topic 6</div>
+          <div class="tab">Topic 7</div>
+          <div class="tab">Topic 8</div>
+          <div class="tab">Topic 9</div>
+          <div class="tab">Topic 10</div>
+        </div>
+      </div>
+      
+      <!-- Latest in mobile menu -->
+      <div class="mobile-nav-section">
+        <div class="mobile-nav-header" id="latestHeader">
+          <span class="menu-icon">☰</span> Latest <span class="trend-icon">📈</span>
+        </div>
+        <div class="mobile-nav-tabs" id="latestTabs">
+          <div class="tab active">Latest num 1</div>
+          <div class="tab">Latest num 2</div>
+          <div class="tab">Latest num 3</div>
+          <div class="tab">Latest num 4</div>
+          <div class="tab">Latest</div>
+          <div class="tab">Long latest num 7</div>
+          <div class="tab">Latest n 4</div>
+          <div class="tab">Lates</div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Trending Topics -->
-<div class="nav-tabs">
-  <button class="tab active">Trending Topics <span class="trend-icon">📈</span></button>
-  <button class="tab">Topics 1</button>
-  <button class="tab">Topics 2</button>
-  <button class="tab">Topics 3</button>
-  <button class="tab">Topics 4</button>
-  <button class="tab">Topics 5</button>
-  <button class="tab">Topics 6</button>
-  <button class="tab">Topics 7</button>
-  <button class="tab">Topics 8</button>
-  <button class="tab">Topics 9</button>
-  <button class="tab">Topics 10</button>
-</div>
+  <!-- Trending Topics (Visible only on desktop) -->
+  <div class="nav-tabs">
+    <button class="tab active">Trending Topics <span class="trend-icon">📈</span></button>
+    <button class="tab">Topics 1</button>
+    <button class="tab">Topics 2</button>
+    <button class="tab">Topics 3</button>
+    <button class="tab">Topics 4</button>
+    <button class="tab">Topics 5</button>
+    <button class="tab">Topics 6</button>
+    <button class="tab">Topics 7</button>
+    <button class="tab">Topics 8</button>
+    <button class="tab">Topics 9</button>
+    <button class="tab">Topics 10</button>
+  </div>
 
-<!-- Latest Navigation -->
-<div class="nav-tabs">
-  <button class="tab active"><span class="menu-icon">☰</span> Latest <span class="trend-icon">📈</span></button>
-  <button class="tab">Latest num 1</button>
-  <button class="tab">Latest num 2</button>
-  <button class="tab">Latest num 3</button>
-  <button class="tab">Latest num 4</button>
-  <button class="tab">Latest</button>
-  <button class="tab">Long latest num 7</button>
-  <button class="tab">Latest n 4</button>
-  <button class="tab">Lates</button>
-</div>
-
-  
+  <!-- Latest Navigation (Visible only on desktop) -->
+  <div class="nav-tabs">
+    <button class="tab active"><span class="menu-icon">☰</span> Latest <span class="trend-icon">📈</span></button>
+    <button class="tab">Latest num 1</button>
+    <button class="tab">Latest num 2</button>
+    <button class="tab">Latest num 3</button>
+    <button class="tab">Latest num 4</button>
+    <button class="tab">Latest</button>
+    <button class="tab">Long latest num 7</button>
+    <button class="tab">Latest n 4</button>
+    <button class="tab">Lates</button>
+  </div>
 
   <!-- Main layout -->
   <div class="layout">
+    <!-- Sidebar (hidden on mobile) -->
     <div class="sidebar">
       <button>Side option 1</button>
       <button>Side option 2</button>
@@ -465,14 +711,15 @@
       <button>Side option 10</button>
       <button>Side option 11</button>
 
+      
+
       <div class="app-links">
         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
-        <div class="footer-btn-wrapper">
-          <button class="footer-btn" id="sitemapBtn">SITEMAP</button>
-          <button class="footer-btn" id="groupSitesBtn">GROUP SITES</button>
+        <div class="sidebar-btn-wrapper">
+          <button class="footer-btn" id="desktopSitemapBtn">SITEMAP</button>
+          <button class="footer-btn" id="desktopGroupSitesBtn">GROUP SITES</button>
         </div>
       </div>
-      
     </div>
 
     <div class="content">
@@ -482,9 +729,13 @@
 
   <!-- Footer with dynamic content -->
   <div class="footer">
-    <div id="defaultFooter">
-      
+    <!-- Footer buttons (visible only on mobile) -->
+    <div class="footer-btn-wrapper">
+      <button class="footer-btn" id="mobileSitemapBtn">SITEMAP</button>
+      <button class="footer-btn" id="mobileGroupSitesBtn">GROUP SITES</button>
     </div>
+    
+    <div id="defaultFooter"></div>
     
     <!-- Sitemap Content -->
     <div id="sitemapContent" class="footer-content">
@@ -590,9 +841,51 @@
   </div>
 
   <script>
-    // Get elements
-    const sitemapBtn = document.getElementById('sitemapBtn');
-    const groupSitesBtn = document.getElementById('groupSitesBtn');
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    // Collapsible mobile nav sections
+    const sideOptionsHeader = document.getElementById('sideOptionsHeader');
+    const sideOptions = document.getElementById('sideOptions');
+    const trendingHeader = document.getElementById('trendingHeader');
+    const trendingTabs = document.getElementById('trendingTabs');
+    const latestHeader = document.getElementById('latestHeader');
+    const latestTabs = document.getElementById('latestTabs');
+
+    sideOptionsHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      sideOptions.classList.toggle('active');
+    });
+
+    trendingHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      trendingTabs.classList.toggle('active');
+    });
+
+    latestHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      latestTabs.classList.toggle('active');
+    });
+
+    // Get footer elements
+    const mobileSitemapBtn = document.getElementById('mobileSitemapBtn');
+    const mobileGroupSitesBtn = document.getElementById('mobileGroupSitesBtn');
+    const desktopSitemapBtn = document.getElementById('desktopSitemapBtn');
+    const desktopGroupSitesBtn = document.getElementById('desktopGroupSitesBtn');
     const defaultFooter = document.getElementById('defaultFooter');
     const sitemapContent = document.getElementById('sitemapContent');
     const groupSitesContent = document.getElementById('groupSitesContent');
@@ -602,54 +895,75 @@
       defaultFooter.style.display = 'block';
       sitemapContent.style.display = 'none';
       groupSitesContent.style.display = 'none';
-      sitemapBtn.classList.remove('active');
-      groupSitesBtn.classList.remove('active');
+      mobileSitemapBtn?.classList.remove('active');
+      mobileGroupSitesBtn?.classList.remove('active');
+      desktopSitemapBtn?.classList.remove('active');
+      desktopGroupSitesBtn?.classList.remove('active');
+    }
+
+    // Function to show footer content
+    function showFooterContent(contentId, btn) {
+      resetFooter();
+      defaultFooter.style.display = 'none';
+      contentId.style.display = 'block';
+      btn.classList.add('active');
+      document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
     }
 
     // Initialize
     resetFooter();
 
-    // Sitemap button click
-    sitemapBtn.addEventListener('click', function() {
-      if (sitemapContent.style.display === 'block') {
-        resetFooter();
-      } else {
-        defaultFooter.style.display = 'none';
-        sitemapContent.style.display = 'block';
-        groupSitesContent.style.display = 'none';
-        sitemapBtn.classList.add('active');
-        groupSitesBtn.classList.remove('active');
-        
-        // Scroll to footer
-        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    // Footer button click handlers
+    if (mobileSitemapBtn) {
+      mobileSitemapBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (sitemapContent.style.display === 'block') {
+          resetFooter();
+        } else {
+          showFooterContent(sitemapContent, this);
+        }
+      });
+    }
 
-    // Group Sites button click
-    groupSitesBtn.addEventListener('click', function() {
-      if (groupSitesContent.style.display === 'block') {
-        resetFooter();
-      } else {
-        defaultFooter.style.display = 'none';
-        groupSitesContent.style.display = 'block';
-        sitemapContent.style.display = 'none';
-        groupSitesBtn.classList.add('active');
-        sitemapBtn.classList.remove('active');
-        
-        // Scroll to footer
-        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    if (mobileGroupSitesBtn) {
+      mobileGroupSitesBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (groupSitesContent.style.display === 'block') {
+          resetFooter();
+        } else {
+          showFooterContent(groupSitesContent, this);
+        }
+      });
+    }
+
+    if (desktopSitemapBtn) {
+      desktopSitemapBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (sitemapContent.style.display === 'block') {
+          resetFooter();
+        } else {
+          showFooterContent(sitemapContent, this);
+        }
+      });
+    }
+
+    if (desktopGroupSitesBtn) {
+      desktopGroupSitesBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (groupSitesContent.style.display === 'block') {
+          resetFooter();
+        } else {
+          showFooterContent(groupSitesContent, this);
+        }
+      });
+    }
 
     // Close when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.footer-content') && 
-          !e.target.closest('.footer-btn') &&
-          (sitemapContent.style.display === 'block' || groupSitesContent.style.display === 'block')) {
+    document.addEventListener('click', function() {
+      if (sitemapContent.style.display === 'block' || groupSitesContent.style.display === 'block') {
         resetFooter();
       }
     });
   </script>
-
 </body>
 </html>
