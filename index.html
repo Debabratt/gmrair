@@ -42,7 +42,7 @@
       left: 0;
       width: 100%;
       height: 4px;
-      margin-bottom:3px ;
+      margin-bottom: 3px;
       background-color: black;
     }
 
@@ -56,12 +56,14 @@
     .dropdown {
       position: relative;
       cursor: pointer;
+      font-size: 16px;
+      padding: 8px 12px;
     }
 
     .dropdown::after {
       content: "▼";
       margin-left: 5px;
-      font-size: 12px;
+      font-size: 10px;
     }
 
     .search-container {
@@ -83,6 +85,7 @@
       border: none;
       outline: none;
       width: 100%;
+      font-size: 14px;
     }
 
     .avatar {
@@ -146,37 +149,63 @@
 
     /* Mobile menu */
     .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #b4d0ef;
-      padding: 20px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-      flex-direction: column;
-      gap: 15px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
+  display: none;
+  position: absolute;
+  top: 0; /* Changed from 100% to align with viewport top */
+  left: 0;
+  width: 90%; /* Kept your reduced width */
+  height: 100vh; /* Full viewport height */
+  background-color: #b4d0ef;
+  padding: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 50px;
+  max-height: 100vh; /* Kept for compatibility, but height overrides */
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
     .mobile-menu.active {
       display: flex;
     }
 
     .mobile-menu .dropdown-container {
       flex-direction: column;
-      gap: 15px;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .mobile-menu .dropdown {
+      background-color: #fff;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      width: 100%;
+      max-width: 200px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    .mobile-menu .dropdown:hover {
+      background-color: #f0f0f0;
     }
 
     .mobile-menu .search-container {
       order: -1;
       width: 100%;
+      padding-bottom: 10px;
     }
 
     .mobile-menu .search-bar {
-      width: 100%;
+      width: 90%;
+      max-width: 220px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+    }
+
+    .mobile-menu .search-bar input {
+      font-size: 14px;
     }
 
     /* Mobile nav sections */
@@ -184,24 +213,25 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .mobile-nav-header {
       background-color: #2d1a2d;
       color: white;
-      padding: 12px 15px;
+      padding: 10px 12px;
       border-radius: 6px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 16px;
+      font-size: 15px;
+      max-width: 200px;
     }
 
     .mobile-nav-header::after {
       content: "▼";
-      font-size: 12px;
+      font-size: 10px;
       transition: transform 0.3s;
     }
 
@@ -212,8 +242,8 @@
     .mobile-nav-tabs {
       display: none;
       flex-direction: column;
-      gap: 8px;
-      padding: 8px 0 8px 15px;
+      gap: 6px;
+      padding: 6px 0 6px 12px;
     }
 
     .mobile-nav-tabs.active {
@@ -222,11 +252,13 @@
 
     .mobile-nav-tabs .tab {
       width: 100%;
+      max-width: 200px;
       text-align: left;
-      padding: 10px 15px;
+      padding: 8px 12px;
       background-color: #666;
       border-radius: 6px;
-      font-size: 15px;
+      font-size: 14px;
+      min-width: unset;
     }
 
     .mobile-nav-tabs .tab.active {
@@ -238,8 +270,8 @@
     .mobile-side-options {
       display: none;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 15px;
+      gap: 6px;
+      margin-top: 10px;
     }
 
     .mobile-side-options.active {
@@ -250,11 +282,18 @@
       background-color: #3c2f3e;
       color: white;
       border: none;
-      padding: 12px 15px;
+      padding: 10px 12px;
       border-radius: 6px;
       text-align: left;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
+      width: 100%;
+      max-width: 200px;
+      transition: background-color 0.3s;
+    }
+
+    .mobile-side-options button:hover {
+      background-color: #4d3f4f;
     }
 
     /* Main layout */
@@ -315,7 +354,7 @@
     }
 
     .app-links {
-      margin-top: 50px; /* Push to bottom of sidebar */
+      margin-top: 50px;
       padding: 10px;
       text-align: center;
     }
@@ -462,12 +501,12 @@
 
     /* Footer buttons - desktop (in sidebar) */
     .sidebar-btn-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;  /* Reduced gap */
-  margin-top: auto;
-  padding: 6px 0;  /* Reduced padding */
-}
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: auto;
+      padding: 6px 0;
+    }
 
     @media (min-width: 768px) {
       .footer-btn-wrapper {
@@ -526,17 +565,14 @@
         display: flex;
       }
       
-      /* Adjust header padding for mobile */
       header {
         padding: 10px 15px;
       }
       
-      /* Make logo smaller on mobile */
       .logo {
         font-size: 20px;
       }
       
-      /* Adjust footer columns for mobile */
       .footer-columns {
         padding: 15px 10px;
       }
@@ -546,7 +582,6 @@
         min-width: 100%;
       }
       
-      /* Make business grid single column on mobile */
       .business-grid {
         grid-template-columns: 1fr;
       }
@@ -634,8 +669,8 @@
         <div class="mobile-nav-header active" id="trendingHeader">
           Trending Topics <span class="trend-icon">📈</span>
         </div>
-        <div class="mobile-nav-tabs active" id="trendingTabs">
-          <div class="tab active">Topic 1</div>
+        <div class="mobile-nav-tabs " id="trendingTabs">
+          <div class="tab ">Topic 1</div>
           <div class="tab">Topic 2</div>
           <div class="tab">Topic 3</div>
           <div class="tab">Topic 4</div>
@@ -710,8 +745,6 @@
       <button>Side option 9</button>
       <button>Side option 10</button>
       <button>Side option 11</button>
-
-      
 
       <div class="app-links">
         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
