@@ -149,23 +149,23 @@
 
     /* Mobile menu */
     .mobile-menu {
-  display: none;
-  position: absolute;
-  top: 0; /* Changed from 100% to align with viewport top */
-  left: 0;
-  width: 91%; /* Kept your reduced width */
-  height: 100vh; /* Full viewport height */
-  background-color: #71879d;
-  padding: 15px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 70px;
-  max-height: 100vh; /* Kept for compatibility, but height overrides */
-  overflow-y: auto;
-  border-bottom: 1px solid #ccc;
-}
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 91%;
+      height: 100vh;
+      background-color: #71879d;
+      padding: 15px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 70px;
+      max-height: 100vh;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+    }
     .mobile-menu.active {
       display: flex;
     }
@@ -490,66 +490,50 @@
       color: #444;
     }
 
-    /* Footer buttons - mobile */
-    .footer-btn-wrapper {
+    /* Footer tabs */
+    .footer-tabs {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      padding: 15px;
+     
+      justify-content:start;
+      max-width: auto;
+     
       background-color: #b4d0ef;
-      flex-wrap: wrap;
-    }
-
-    /* Footer buttons - desktop (in sidebar) */
-    .sidebar-btn-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: auto;
-      padding: 6px 0;
-    }
-
-    @media (min-width: 768px) {
-      .footer-btn-wrapper {
-        display: none;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .sidebar-btn-wrapper {
-        display: none;
-      }
     }
 
     .footer-btn {
-      background: linear-gradient(135deg, #3c2f3e, #5a4a5e);
-      color: #f1f1f1;
-      border: 1px solid #6e5e72;
-      padding: 10px 20px;
-      border-radius: 999px;
+      background-color: #f2f1f7;
+      color: black;
+      padding: 8px 16px;
+      font-size: 10px;
+      font-weight: 500;
+      border: none;
+      margin-left: 10px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease-in-out;
-      min-width: 140px;
-      text-align: center;
-      width: 100%;
+      text-align: start;
+      transition: background-color 0.3s ease;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
-    .footer-btn:hover {
-      background: linear-gradient(135deg, #4d3f4f, #6d5a70);
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    .footer-btn span {
+      font-weight: bold;
+      margin-left: 10px;
+      
     }
 
     .footer-btn.active {
-      background: linear-gradient(135deg, #6d5a70, #7a6780);
-      box-shadow: 0 0 0 2px #fff;
-      color: #fff;
+      background-color: #003366;
+      color: white;
     }
+    @media (max-width: 767px) {
+  .footer-tabs {
+    margin-top: 105px; 
+    justify-content: center;/* Adjust this value to move the buttons lower */
+    /* Optional: Adds some space below the buttons */
+  }
+}
 
     /* Media queries for mobile */
     @media (max-width: 767px) {
@@ -670,8 +654,8 @@
         <div class="mobile-nav-header active" id="trendingHeader">
           Trending Topics <span class="trend-icon">📈</span>
         </div>
-        <div class="mobile-nav-tabs " id="trendingTabs">
-          <div class="tab ">Topic 1</div>
+        <div class="mobile-nav-tabs" id="trendingTabs">
+          <div class="tab">Topic 1</div>
           <div class="tab">Topic 2</div>
           <div class="tab">Topic 3</div>
           <div class="tab">Topic 4</div>
@@ -749,10 +733,6 @@
 
       <div class="app-links">
         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
-        <div class="sidebar-btn-wrapper">
-          <button class="footer-btn" id="desktopSitemapBtn">SITEMAP</button>
-          <button class="footer-btn" id="desktopGroupSitesBtn">GROUP SITES</button>
-        </div>
       </div>
     </div>
 
@@ -763,10 +743,10 @@
 
   <!-- Footer with dynamic content -->
   <div class="footer">
-    <!-- Footer buttons (visible only on mobile) -->
-    <div class="footer-btn-wrapper">
-      <button class="footer-btn" id="mobileSitemapBtn">SITEMAP</button>
-      <button class="footer-btn" id="mobileGroupSitesBtn">GROUP SITES</button>
+    <!-- Footer tabs -->
+    <div class="footer-tabs">
+      <button class="footer-btn " id="sitemapBtn">Sitemap <span>−</span></button>
+      <button class="footer-btn" id="groupSitesBtn">Group Sites <span>+</span></button>
     </div>
     
     <div id="defaultFooter"></div>
@@ -875,129 +855,102 @@
   </div>
 
   <script>
-    // Mobile menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
+ // Mobile menu toggle
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      }
-    });
+hamburger.addEventListener('click', function() {
+  this.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
 
-    // Collapsible mobile nav sections
-    const sideOptionsHeader = document.getElementById('sideOptionsHeader');
-    const sideOptions = document.getElementById('sideOptions');
-    const trendingHeader = document.getElementById('trendingHeader');
-    const trendingTabs = document.getElementById('trendingTabs');
-    const latestHeader = document.getElementById('latestHeader');
-    const latestTabs = document.getElementById('latestTabs');
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  }
+});
 
-    sideOptionsHeader.addEventListener('click', function() {
-      this.classList.toggle('active');
-      sideOptions.classList.toggle('active');
-    });
+// Collapsible mobile nav sections
+const sideOptionsHeader = document.getElementById('sideOptionsHeader');
+const sideOptions = document.getElementById('sideOptions');
+const trendingHeader = document.getElementById('trendingHeader');
+const trendingTabs = document.getElementById('trendingTabs');
+const latestHeader = document.getElementById('latestHeader');
+const latestTabs = document.getElementById('latestTabs');
 
-    trendingHeader.addEventListener('click', function() {
-      this.classList.toggle('active');
-      trendingTabs.classList.toggle('active');
-    });
+sideOptionsHeader.addEventListener('click', function() {
+  this.classList.toggle('active');
+  sideOptions.classList.toggle('active');
+});
 
-    latestHeader.addEventListener('click', function() {
-      this.classList.toggle('active');
-      latestTabs.classList.toggle('active');
-    });
+trendingHeader.addEventListener('click', function() {
+  this.classList.toggle('active');
+  trendingTabs.classList.toggle('active');
+});
 
-    // Get footer elements
-    const mobileSitemapBtn = document.getElementById('mobileSitemapBtn');
-    const mobileGroupSitesBtn = document.getElementById('mobileGroupSitesBtn');
-    const desktopSitemapBtn = document.getElementById('desktopSitemapBtn');
-    const desktopGroupSitesBtn = document.getElementById('desktopGroupSitesBtn');
-    const defaultFooter = document.getElementById('defaultFooter');
-    const sitemapContent = document.getElementById('sitemapContent');
-    const groupSitesContent = document.getElementById('groupSitesContent');
+latestHeader.addEventListener('click', function() {
+  this.classList.toggle('active');
+  latestTabs.classList.toggle('active');
+});
 
-    // Function to reset footer
-    function resetFooter() {
-      defaultFooter.style.display = 'block';
-      sitemapContent.style.display = 'none';
-      groupSitesContent.style.display = 'none';
-      mobileSitemapBtn?.classList.remove('active');
-      mobileGroupSitesBtn?.classList.remove('active');
-      desktopSitemapBtn?.classList.remove('active');
-      desktopGroupSitesBtn?.classList.remove('active');
-    }
+// Footer logic
+const sitemapBtn = document.getElementById('sitemapBtn');
+const groupSitesBtn = document.getElementById('groupSitesBtn');
+const defaultFooter = document.getElementById('defaultFooter');
+const sitemapContent = document.getElementById('sitemapContent');
+const groupSitesContent = document.getElementById('groupSitesContent');
 
-    // Function to show footer content
-    function showFooterContent(contentId, btn) {
-      resetFooter();
-      defaultFooter.style.display = 'none';
-      contentId.style.display = 'block';
-      btn.classList.add('active');
-      document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-    }
+// Function to reset footer
+function resetFooter() {
+  sitemapContent.style.display = 'none';
+  groupSitesContent.style.display = 'none';
+  defaultFooter.style.display = 'block';
+  sitemapBtn.classList.remove('active');
+  groupSitesBtn.classList.remove('active');
+  sitemapBtn.querySelector('span').textContent = '+';
+  groupSitesBtn.querySelector('span').textContent = '+';
+}
 
-    // Initialize
+// Function to show footer content
+function showFooterContent(contentId, btn) {
+  resetFooter();
+  contentId.style.display = 'block';
+  defaultFooter.style.display = 'none';
+  btn.classList.add('active');
+  btn.querySelector('span').textContent = '−';
+  document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Initialize footer with no content visible
+resetFooter();
+
+// Footer button click handlers
+sitemapBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (sitemapContent.style.display === 'block') {
     resetFooter();
+  } else {
+    showFooterContent(sitemapContent, this);
+  }
+});
 
-    // Footer button click handlers
-    if (mobileSitemapBtn) {
-      mobileSitemapBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (sitemapContent.style.display === 'block') {
-          resetFooter();
-        } else {
-          showFooterContent(sitemapContent, this);
-        }
-      });
-    }
+groupSitesBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (groupSitesContent.style.display === 'block') {
+    resetFooter();
+  } else {
+    showFooterContent(groupSitesContent, this);
+  }
+});
 
-    if (mobileGroupSitesBtn) {
-      mobileGroupSitesBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (groupSitesContent.style.display === 'block') {
-          resetFooter();
-        } else {
-          showFooterContent(groupSitesContent, this);
-        }
-      });
-    }
-
-    if (desktopSitemapBtn) {
-      desktopSitemapBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (sitemapContent.style.display === 'block') {
-          resetFooter();
-        } else {
-          showFooterContent(sitemapContent, this);
-        }
-      });
-    }
-
-    if (desktopGroupSitesBtn) {
-      desktopGroupSitesBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (groupSitesContent.style.display === 'block') {
-          resetFooter();
-        } else {
-          showFooterContent(groupSitesContent, this);
-        }
-      });
-    }
-
-    // Close when clicking outside
-    document.addEventListener('click', function() {
-      if (sitemapContent.style.display === 'block' || groupSitesContent.style.display === 'block') {
-        resetFooter();
-      }
-    });
+// Close footer content when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.footer-tabs') && !e.target.closest('.footer-content')) {
+    resetFooter();
+  }
+});
   </script>
 </body>
 </html>
