@@ -93,9 +93,7 @@
       transition: background-color 0.3s;
     }
 
-    .dropdown-menu a:hover {
-      background-color: #f1f1f1;
-    }
+  
 
     .search-container {
       display: flex;
@@ -219,9 +217,9 @@
       transition: background-color 0.3s;
     }
 
-    .mobile-menu .dropdown:hover {
+    /* .mobile-menu .dropdown:hover {
       background-color: #f0f0f0;
-    }
+    } */
 
     .mobile-menu .search-container {
       order: -1;
@@ -238,6 +236,38 @@
 
     .mobile-menu .search-bar input {
       font-size: 14px;
+    }
+
+    /* Mobile dropdown menu styles */
+    .mobile-dropdown-menu {
+      display: none;
+      background-color: #3c2f3e;
+      margin-top: 5px;
+      border-radius: 6px;
+      padding: 5px 0;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .mobile-dropdown-menu a {
+      color: white;
+      padding: 8px 20px;
+      text-decoration: none;
+      display: block;
+      font-size: 13px;
+      transition: background-color 0.3s;
+    }
+
+    .mobile-dropdown-menu a:hover {
+      background-color: #4d3f4f;
+    }
+
+    .dropdown.active .mobile-dropdown-menu {
+      display: block;
+    }
+
+    .dropdown.active {
+      background-color: #4d3f4f;
     }
 
     /* Mobile nav sections */
@@ -707,11 +737,48 @@
         <div class="avatar"></div>
       </div>
       <div class="dropdown-container">
-        <div class="dropdown">Drop1</div>
-        <div class="dropdown">Drop2</div>
-        <div class="dropdown">Drop1</div>
-        <div class="dropdown">Drop2</div>
-        <div class="dropdown">DropMenu3</div>
+        <div class="dropdown">Drop1
+          <div class="mobile-dropdown-menu">
+            <a href="#">Dropdown Item 1</a>
+            <a href="#">Dropdown Item 2</a>
+            <a href="#">Dropdown Item 3</a>
+            <a href="#">Dropdown Item 4</a>
+          </div>
+        </div>
+        <div class="dropdown">Drop2
+          <div class="mobile-dropdown-menu">
+            <a href="#">Menu Option A</a>
+            <a href="#">Menu Option B</a>
+            <a href="#">Menu Option C</a>
+            <a href="#">Menu Option D</a>
+            <a href="#">Menu Option E</a>
+          </div>
+        </div>
+        <div class="dropdown">Drop1
+          <div class="mobile-dropdown-menu">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+        <div class="dropdown">Drop2
+          <div class="mobile-dropdown-menu">
+            <a href="#">Page 1</a>
+            <a href="#">Page 2</a>
+            <a href="#">Page 3</a>
+            <a href="#">Page 4</a>
+          </div>
+        </div>
+        <div class="dropdown">DropMenu3
+          <div class="mobile-dropdown-menu">
+            <a href="#">Section 1</a>
+            <a href="#">Section 2</a>
+            <a href="#">Section 3</a>
+            <a href="#">Section 4</a>
+            <a href="#">Section 5</a>
+            <a href="#">Section 6</a>
+          </div>
+        </div>
       </div>
       
       <!-- Side options in mobile menu -->
@@ -795,7 +862,7 @@
     <button class="tab">Latest</button>
     <button class="tab">Long latest num 7</button>
     <button class="tab">Latest n 4</button>
-    <button class="tab">Lates</button>
+    <button class="tab">Latest</button>
   </div>
 
   <!-- Main layout -->
@@ -960,6 +1027,22 @@
         hamburger.classList.remove('active');
         mobileMenu.classList.remove('active');
       }
+    });
+
+    // Mobile dropdown functionality
+    const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown');
+    mobileDropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        
+        // Close other dropdowns when opening this one
+        mobileDropdowns.forEach(otherDropdown => {
+          if (otherDropdown !== this) {
+            otherDropdown.classList.remove('active');
+          }
+        });
+      });
     });
 
     // Collapsible mobile nav sections
