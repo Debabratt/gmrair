@@ -66,6 +66,37 @@
       font-size: 10px;
     }
 
+    /* Dropdown menu styles */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      margin-top: 10px;
+      display: none;
+     
+      padding: 10px 2px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      color: #333;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f1f1;
+    }
+
     .search-container {
       display: flex;
       align-items: center;
@@ -348,6 +379,25 @@
       padding: 20px;
     }
 
+    /* Content styles */
+    .content h1 {
+      color: #2d1a2d;
+      margin-top: 0;
+    }
+    
+    .content p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .content-section {
+      
+      padding: 20px;
+      /* border-radius: 8px; */
+      margin-bottom: 20px;
+      /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+    }
+
     .footer {
       text-align: center;
       position: relative;
@@ -493,10 +543,8 @@
     /* Footer tabs */
     .footer-tabs {
       display: flex;
-     
       justify-content:start;
       max-width: auto;
-     
       background-color: #b4d0ef;
     }
 
@@ -520,7 +568,6 @@
     .footer-btn span {
       font-weight: bold;
       margin-left: 10px;
-      
     }
 
     .footer-btn.active {
@@ -528,12 +575,11 @@
       color: white;
     }
     @media (max-width: 767px) {
-  .footer-tabs {
-    margin-top: 90px; 
-    justify-content: center;/* Adjust this value to move the buttons lower */
-    /* Optional: Adds some space below the buttons */
-  }
-}
+      .footer-tabs {
+        margin-top: 90px; 
+        justify-content: center;
+      }
+    }
 
     /* Media queries for mobile */
     @media (max-width: 767px) {
@@ -608,11 +654,48 @@
     </div>
     
     <div class="dropdown-container">
-      <div class="dropdown">Drop1</div>
-      <div class="dropdown">Drop2</div>
-      <div class="dropdown">Drop1</div>
-      <div class="dropdown">Drop2</div>
-      <div class="dropdown">DropMenu3</div>
+      <div class="dropdown">Drop1
+        <div class="dropdown-menu">
+          <a href="#">Dropdown Item 1</a>
+          <a href="#">Dropdown Item 2</a>
+          <a href="#">Dropdown Item 3</a>
+          <a href="#">Dropdown Item 4</a>
+        </div>
+      </div>
+      <div class="dropdown">Drop2
+        <div class="dropdown-menu">
+          <a href="#">Menu Option A</a>
+          <a href="#">Menu Option B</a>
+          <a href="#">Menu Option C</a>
+          <a href="#">Menu Option D</a>
+          <a href="#">Menu Option E</a>
+        </div>
+      </div>
+      <div class="dropdown">Drop1
+        <div class="dropdown-menu">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <div class="dropdown">Drop2
+        <div class="dropdown-menu">
+          <a href="#">Page 1</a>
+          <a href="#">Page 2</a>
+          <a href="#">Page 3</a>
+          <a href="#">Page 4</a>
+        </div>
+      </div>
+      <div class="dropdown">DropMenu3
+        <div class="dropdown-menu">
+          <a href="#">Section 1</a>
+          <a href="#">Section 2</a>
+          <a href="#">Section 3</a>
+          <a href="#">Section 4</a>
+          <a href="#">Section 5</a>
+          <a href="#">Section 6</a>
+        </div>
+      </div>
     </div>
     
     <!-- Mobile menu (hidden by default) -->
@@ -738,6 +821,13 @@
 
     <div class="content">
       <!-- Main Content Goes Here -->
+      <div class="content-section">
+        <h1>Welcome to MY Domain.com</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+        <p>Vestibulum auctor dapibus neque. Maecenas sed nisi in arcu tincidunt vehicula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc arcu libero, rutrum ac, commodo vel, scelerisque sit amet, pede. Sed eu libero sit amet quam egestas semper.</p>
+      </div>
+      
+      
     </div>
   </div>
 
@@ -855,102 +945,102 @@
   </div>
 
   <script>
- // Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-hamburger.addEventListener('click', function() {
-  this.classList.toggle('active');
-  mobileMenu.classList.toggle('active');
-});
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-  }
-});
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
 
-// Collapsible mobile nav sections
-const sideOptionsHeader = document.getElementById('sideOptionsHeader');
-const sideOptions = document.getElementById('sideOptions');
-const trendingHeader = document.getElementById('trendingHeader');
-const trendingTabs = document.getElementById('trendingTabs');
-const latestHeader = document.getElementById('latestHeader');
-const latestTabs = document.getElementById('latestTabs');
+    // Collapsible mobile nav sections
+    const sideOptionsHeader = document.getElementById('sideOptionsHeader');
+    const sideOptions = document.getElementById('sideOptions');
+    const trendingHeader = document.getElementById('trendingHeader');
+    const trendingTabs = document.getElementById('trendingTabs');
+    const latestHeader = document.getElementById('latestHeader');
+    const latestTabs = document.getElementById('latestTabs');
 
-sideOptionsHeader.addEventListener('click', function() {
-  this.classList.toggle('active');
-  sideOptions.classList.toggle('active');
-});
+    sideOptionsHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      sideOptions.classList.toggle('active');
+    });
 
-trendingHeader.addEventListener('click', function() {
-  this.classList.toggle('active');
-  trendingTabs.classList.toggle('active');
-});
+    trendingHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      trendingTabs.classList.toggle('active');
+    });
 
-latestHeader.addEventListener('click', function() {
-  this.classList.toggle('active');
-  latestTabs.classList.toggle('active');
-});
+    latestHeader.addEventListener('click', function() {
+      this.classList.toggle('active');
+      latestTabs.classList.toggle('active');
+    });
 
-// Footer logic
-const sitemapBtn = document.getElementById('sitemapBtn');
-const groupSitesBtn = document.getElementById('groupSitesBtn');
-const defaultFooter = document.getElementById('defaultFooter');
-const sitemapContent = document.getElementById('sitemapContent');
-const groupSitesContent = document.getElementById('groupSitesContent');
+    // Footer logic
+    const sitemapBtn = document.getElementById('sitemapBtn');
+    const groupSitesBtn = document.getElementById('groupSitesBtn');
+    const defaultFooter = document.getElementById('defaultFooter');
+    const sitemapContent = document.getElementById('sitemapContent');
+    const groupSitesContent = document.getElementById('groupSitesContent');
 
-// Function to reset footer
-function resetFooter() {
-  sitemapContent.style.display = 'none';
-  groupSitesContent.style.display = 'none';
-  defaultFooter.style.display = 'block';
-  sitemapBtn.classList.remove('active');
-  groupSitesBtn.classList.remove('active');
-  sitemapBtn.querySelector('span').textContent = '+';
-  groupSitesBtn.querySelector('span').textContent = '+';
-}
+    // Function to reset footer
+    function resetFooter() {
+      sitemapContent.style.display = 'none';
+      groupSitesContent.style.display = 'none';
+      defaultFooter.style.display = 'block';
+      sitemapBtn.classList.remove('active');
+      groupSitesBtn.classList.remove('active');
+      sitemapBtn.querySelector('span').textContent = '+';
+      groupSitesBtn.querySelector('span').textContent = '+';
+    }
 
-// Function to show footer content
-function showFooterContent(contentId, btn) {
-  resetFooter();
-  contentId.style.display = 'block';
-  defaultFooter.style.display = 'none';
-  btn.classList.add('active');
-  btn.querySelector('span').textContent = '−';
-  document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-}
+    // Function to show footer content
+    function showFooterContent(contentId, btn) {
+      resetFooter();
+      contentId.style.display = 'block';
+      defaultFooter.style.display = 'none';
+      btn.classList.add('active');
+      btn.querySelector('span').textContent = '−';
+      document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+    }
 
-// Initialize footer with no content visible
-resetFooter();
-
-// Footer button click handlers
-sitemapBtn.addEventListener('click', function(e) {
-  e.stopPropagation();
-  if (sitemapContent.style.display === 'block') {
+    // Initialize footer with no content visible
     resetFooter();
-  } else {
-    showFooterContent(sitemapContent, this);
-  }
-});
 
-groupSitesBtn.addEventListener('click', function(e) {
-  e.stopPropagation();
-  if (groupSitesContent.style.display === 'block') {
-    resetFooter();
-  } else {
-    showFooterContent(groupSitesContent, this);
-  }
-});
+    // Footer button click handlers
+    sitemapBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (sitemapContent.style.display === 'block') {
+        resetFooter();
+      } else {
+        showFooterContent(sitemapContent, this);
+      }
+    });
 
-// Close footer content when clicking outside
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.footer-tabs') && !e.target.closest('.footer-content')) {
-    resetFooter();
-  }
-});
+    groupSitesBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (groupSitesContent.style.display === 'block') {
+        resetFooter();
+      } else {
+        showFooterContent(groupSitesContent, this);
+      }
+    });
+
+    // Close footer content when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.footer-tabs') && !e.target.closest('.footer-content')) {
+        resetFooter();
+      }
+    });
   </script>
 </body>
 </html>
