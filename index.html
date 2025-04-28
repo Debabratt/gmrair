@@ -127,12 +127,12 @@
 
     .nav-tabs {
       background-color: #d3d4d5;
-      padding: 10px;
+      padding: 4px;
       overflow-x: auto;
       white-space: nowrap;
       display: flex;
       gap: 10px;
-      border-bottom: 2px solid black;
+      border-bottom: 1px solid black;
     }
 
     /* Tab buttons */
@@ -573,9 +573,20 @@
     /* Footer tabs */
     .footer-tabs {
       display: flex;
-      justify-content:start;
+      justify-content: start;
       width: 220px;
       background-color: #b4d0ef;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 767px) {
+      .footer-tabs {
+        width: 100%;
+        justify-content:center;
+        background-color: #b4d0ef;
+        padding: 10px 0;
+        margin-top: 90px;
+      }
     }
 
     .footer-btn {
@@ -595,6 +606,13 @@
       border-bottom-right-radius: 0;
     }
 
+    @media (max-width: 767px) {
+      .footer-btn {
+        margin: 0 5px;
+        font-size: 12px;
+      }
+    }
+
     .footer-btn span {
       font-weight: bold;
       margin-left: 10px;
@@ -604,10 +622,15 @@
       background-color: #003366;
       color: white;
     }
+
     @media (max-width: 767px) {
-      .footer-tabs {
-        margin-top: 90px; 
-        justify-content: center;
+      .footer-content {
+        width: 100%;
+      }
+      
+      .footer-columns, .business-grid {
+        width: 100%;
+        box-sizing: border-box;
       }
     }
 
